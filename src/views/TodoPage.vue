@@ -8,9 +8,13 @@
     <NewTodo @on-add-todo="onAddTodo" />
 
     <select v-model="filterString">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="not-completed">Not Completed</option>
+      <option
+        v-for="option of selectors"
+        v-bind:key="option.value"
+        :value="option.value"
+      >
+        {{ option.label }}
+      </option>
     </select>
 
     <hr />
@@ -26,9 +30,9 @@
 </template>
 
 <script>
-import Loader from "../components/Loader";
-import TodoList from "../components/TodoList";
-import NewTodo from "../components/NewTodo";
+import Loader from "@/components/Loader";
+import TodoList from "@/components/TodoList";
+import NewTodo from "@/components/NewTodo";
 
 export default {
   name: "HomePage",
@@ -41,6 +45,11 @@ export default {
       ],
       loading: true,
       filterString: "all",
+      selectors: [
+        { label: "All", value: "all" },
+        { label: "Completed", value: "completed" },
+        { label: "Not Completed", value: "not-completed" },
+      ],
     };
   },
   components: {
@@ -69,7 +78,7 @@ export default {
       if (this.filterString === "not-completed") {
         return this.todos.filter((item) => !item.completed);
       }
-      return []
+      return [];
     },
   },
   methods: {

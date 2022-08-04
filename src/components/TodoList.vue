@@ -1,16 +1,13 @@
 <template>
   <div class="todo-list">
-    <h2>List</h2>
-    <div>
-      <TodoItem
-        v-for="(todo, idx) of todos"
-        v-bind:todo="todo"
-        v-bind:index="idx"
-        :key="todo.id"
-        @on-complete="onCompleteItem"
-        @on-remove="onRemoveItem"
-      />
-    </div>
+    <TodoItem
+      v-for="(todo, idx) of todos"
+      v-bind:todo="todo"
+      v-bind:index="idx"
+      :key="todo.id"
+      @on-complete="onCompleteItem"
+      @on-remove="onRemoveItem"
+    />
   </div>
 </template>
 
